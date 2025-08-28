@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequiredArgsConstructor
 public class HomeController {
 
-    private PersonService personService = new PersonService();
+    private final PersonService personService;
 
     @GetMapping("/home")
     @ResponseBody
-    public String home(){
+    public String home() {
         return "사람 수 : %d".formatted(personService.count());
     }
-}
 
+}
