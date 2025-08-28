@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class PersonController {
 
-    private PersonService personService= new PersonService();
+    private PersonService personService=new PersonService();
 
     @GetMapping("/people")
     @ResponseBody
