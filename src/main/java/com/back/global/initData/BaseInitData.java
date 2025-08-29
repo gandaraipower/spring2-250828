@@ -23,11 +23,11 @@ public class BaseInitData {
     ApplicationRunner initDataRunner() {
         return args -> {
             self.work1();
+            self.work2();
 
         };
     }
 
-    @Transactional
     void work1() {
 
         if(memberService.count()>0){
@@ -40,7 +40,11 @@ public class BaseInitData {
         Member member4 = memberService.join("user2", "유저2");
         Member member5 = memberService.join("user3", "유저3");
 
+    }
 
-
+    @Transactional
+    void work2() {
+        Member member4 = memberService.findByUsername("user2").get();
+        member4.setNickname("new user2");
     }
 }
