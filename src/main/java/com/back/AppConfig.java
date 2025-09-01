@@ -1,41 +1,20 @@
 package com.back;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.ApplicationRunner;
+import org.commonmark.parser.Parser;
+import org.commonmark.renderer.html.HtmlRenderer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.transaction.annotation.Transactional;
 
 @Configuration
 public class AppConfig {
 
-    @Autowired
-    @Lazy
-    private AppConfig self;
+    @Bean
+    public Parser parser() {
+        return Parser.builder().build();
+    }
 
     @Bean
-    public ApplicationRunner myApplicationRunner3() {
-        return args -> {
-            
-            //리얼 객체의 메서드 호출
-            this.work1();
-            this.work2();
-       
-            //프록시 객체의 메서드 호출
-            self.work1();
-            self.work2();
-        };
+        public HtmlRenderer htmlRenderer(){
+            return HtmlRenderer.builder().build();
+        }
     }
-
-    @Transactional
-    public void work1() {
-        System.out.println("work1");
-    }
-
-    @Transactional
-    public void work2() {
-        System.out.println("work2");
-    }
-
-}
