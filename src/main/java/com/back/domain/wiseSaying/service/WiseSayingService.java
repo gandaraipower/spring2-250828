@@ -27,7 +27,7 @@ public class WiseSayingService {
     }
 
     public WiseSaying findById(int id) {
-        Optional<WiseSaying> wiseSaying = wiseSayingRepository.findById(id);
+        Optional<WiseSaying> wiseSaying = wiseSayingRepository.findById(String.valueOf(id));
 
         if (wiseSaying.isEmpty()) {
             throw new RuntimeException("%d번 명언은 존재하지 않습니다.".formatted(id));
